@@ -27,38 +27,13 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    background: var(--bg);
+    background: url('https://atharventerprises.co/wp-content/uploads/2026/04/premium_photo-1663127374925-56558b81cd38.avif') center/cover no-repeat fixed;
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
     padding: 2rem;
     position: relative;
     overflow-x: hidden;
-}
-
-/* Background Gradients */
-body::before, body::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
-    filter: blur(100px);
-}
-
-body::before {
-    top: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: rgba(25, 222, 187, 0.3);
-}
-
-body::after {
-    bottom: -100px;
-    right: -100px;
-    width: 500px;
-    height: 500px;
-    background: rgba(40, 54, 147, 0.2);
 }
 
 .container {
@@ -72,7 +47,7 @@ body::after {
     padding: 3rem;
     max-width: 900px;
     margin: 0 auto;
-    border: 3px solid var(--primary);
+    border: 3px solid navy;
     position: relative;
     z-index: 1;
 }
@@ -396,7 +371,7 @@ input[list]::-webkit-calendar-picker-indicator {
 
 .grand-total span {
     font-size: 1.3rem !important;
-    color: #000;
+    color: #fff;
     font-weight: bold !important;
 }
 
