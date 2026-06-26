@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Maker - Atharv Enterprises</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Professional Quotation Maker for Atharv Enterprises">
+</head>
+<body>
+
+    <div class="container">
+        <div class="quote-card">
+            
+            <header class="quote-header">
+                <div class="company-info">
+                    <h1>Atharv Enterprises</h1>
+                    <p>314, 3rd Floor, Laxmi Niwas, N. M. Joshi Marg</p>
+                    <p>Byculla (W), Mumbai-400 027</p>
+                    <p>Phone: 9819976369 | Email: atharva.etpz@gmail.com</p>
+                </div>
+                
+                <div class="quote-meta">
+                    <h2>Quotation</h2>
+                    <div class="meta-group">
+                        <label for="quoteNo">Quote No:</label>
+                        <input type="text" id="quoteNo" value="QT-2023-001">
+                    </div>
+                    <div class="meta-group">
+                        <label for="quoteDate">Date:</label>
+                        <input type="date" id="quoteDate">
+                    </div>
+                    <div class="meta-group">
+                        <label for="validUntil">Valid Until:</label>
+                        <input type="date" id="validUntil">
+                    </div>
+                </div>
+            </header>
+
+            <section class="client-section">
+                <div class="client-details">
+                    <div class="form-group">
+                        <label for="clientName">Billed To</label>
+                        <input type="text" id="clientName" class="input-field" placeholder="Client Name / Company">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="clientAddress" class="input-field" placeholder="Client Address"></textarea>
+                    </div>
+                </div>
+                <div class="client-contact">
+                    <div class="form-group">
+                        <label for="clientEmail">Contact Info</label>
+                        <input type="email" id="clientEmail" class="input-field" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="clientPhone" class="input-field" placeholder="Phone Number">
+                    </div>
+                </div>
+            </section>
+
+            <datalist id="productList"></datalist>
+
+            <div class="items-table-wrapper">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th class="col-desc">Description</th>
+                            <th class="col-qty">Qty</th>
+                            <th class="col-price">Unit Price (₹)</th>
+                            <th class="col-total">Total (₹)</th>
+                            <th class="col-action"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody">
+                        <!-- Rows will be injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="add-btn" id="addRowBtn">
+                <i class="ri-add-line"></i> Add New Item
+            </button>
+
+            <section class="summary-section">
+                <div class="notes-area">
+                    <div class="form-group">
+                        <label for="notes">Terms & Conditions / Notes</label>
+                        <textarea id="notes" class="input-field" style="min-height: 120px;">1. Subject to Mumbai Jurisdiction.
+2. Goods once sold will not be taken back.
+3. Interest @ 18% p.a. will be charged if payment is not made within 15 days.</textarea>
+                    </div>
+                </div>
+                
+                <div class="totals-box">
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Discount (%) <input type="number" id="discountRate" class="discount-input" value="0" min="0" max="100"></span>
+                        <span id="discountAmount">-₹0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Tax (GST %) <input type="number" id="taxRate" class="tax-input" value="18" min="0" max="100"></span>
+                        <span id="taxAmount">₹0.00</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>Grand Total</span>
+                        <span id="grandTotal">₹0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="controls">
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="ri-refresh-line"></i> Clear
+                </button>
+                <button class="btn btn-primary" id="printBtn">
+                    <i class="ri-printer-line"></i> Print / Save PDF
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
