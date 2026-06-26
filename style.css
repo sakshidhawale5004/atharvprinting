@@ -2,16 +2,16 @@
 @import url('https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css');
 
 :root {
-    --primary: #ff0000;
-    --primary-light: #ff3333;
+    --primary: #990000;
+    --primary-light: #cc0000;
     --secondary: #333333;
     --accent: #ffcc00;
     --bg: #f4f7fe;
     --card-bg: #ffffff;
     --text-main: #000000;
     --text-muted: #555555;
-    --border: #ff0000;
-    --danger: #ee5d50;
+    --border: #990000;
+    --danger: #cc0000;
     
     --shadow: none;
     --shadow-hover: none;
@@ -322,13 +322,13 @@ input[list]::-webkit-calendar-picker-indicator {
 }
 
 .add-btn {
-    background: rgba(25, 222, 187, 0.1);
-    color: #12b396;
-    border: 2px dashed #12b396;
+    background: transparent;
+    color: var(--primary);
+    border: 2px dashed var(--primary);
     width: 100%;
-    padding: 1rem;
-    border-radius: 8px;
-    font-family: 'Outfit', sans-serif;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-family: inherit;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
@@ -340,11 +340,9 @@ input[list]::-webkit-calendar-picker-indicator {
 }
 
 .add-btn:hover {
-    background: #19DEBB;
-    color: white;
-    border-style: solid;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(25, 222, 187, 0.3);
+    background: rgba(153, 0, 0, 0.05);
+    color: var(--primary-light);
+    border-color: var(--primary-light);
 }
 
 /* Summary Section */
@@ -418,7 +416,7 @@ input[list]::-webkit-calendar-picker-indicator {
 
 .btn {
     padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: inherit;
     font-weight: 600;
     font-size: 1rem;
@@ -428,28 +426,30 @@ input[list]::-webkit-calendar-picker-indicator {
     align-items: center;
     gap: 0.5rem;
     border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-primary {
     background: var(--primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(40, 54, 147, 0.3);
+    box-shadow: 0 4px 10px rgba(153, 0, 0, 0.25);
 }
 
 .btn-primary:hover {
     background: var(--primary-light);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(40, 54, 147, 0.4);
+    box-shadow: 0 6px 15px rgba(153, 0, 0, 0.35);
 }
 
 .btn-secondary {
     background: white;
     color: var(--primary);
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .btn-secondary:hover {
-    background: #f8fafc;
+    background: rgba(153, 0, 0, 0.05);
     transform: translateY(-2px);
 }
 
