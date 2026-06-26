@@ -136,6 +136,16 @@ body {
     margin-bottom: 3rem;
 }
 
+.client-details-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.client-details, .client-contact {
+    flex: 1;
+}
+
 .section-title {
     background: var(--primary);
     color: #fff;
@@ -334,11 +344,13 @@ input[list]::-webkit-calendar-picker-indicator {
 }
 
 .notes-area {
-    width: 50%;
+    flex: 1.5;
+    margin-right: 2rem;
 }
 
 .totals-box {
     width: 350px;
+    flex: 1;
     background: #fff;
     padding: 0;
     border-radius: 0;
@@ -431,6 +443,89 @@ input[list]::-webkit-calendar-picker-indicator {
 .btn-secondary:hover {
     background: rgba(153, 0, 0, 0.05);
     transform: translateY(-2px);
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .quote-card {
+        padding: 1rem;
+        border-width: 2px;
+    }
+
+    .quote-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .company-logo {
+        margin: 0 auto 1rem;
+    }
+
+    .company-info {
+        margin-bottom: 1.5rem;
+    }
+
+    .quote-meta {
+        text-align: center;
+        width: 100%;
+    }
+
+    .quote-meta h2.quote-title {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .meta-group {
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .meta-group label {
+        width: auto;
+    }
+
+    .client-details-wrapper {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .items-table th, .items-table td {
+        padding: 0.4rem;
+        font-size: 0.85rem;
+    }
+    
+    .item-input {
+        padding: 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    .summary-section {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .notes-area {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .totals-box {
+        width: 100%;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* Print Styles */
