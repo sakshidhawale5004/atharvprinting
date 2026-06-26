@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "get-image-colors": "^4.0.1",
+    "xlsx": "^0.18.5"
+  }
+}

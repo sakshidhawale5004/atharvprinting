@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateLinkDisplay() {
             if(linkInput.value.trim() !== '') {
                 linkDisplay.href = linkInput.value.trim();
-                linkDisplay.innerHTML = `<i class="ri-link"></i> ${linkInput.value.trim().replace(/^https?:\\/\\//, '')}`;
+                linkDisplay.innerHTML = `<i class="ri-link"></i> ${linkInput.value.trim().replace(/^https?:\/\//, '')}`;
                 linkDisplay.style.display = 'inline-block';
             } else {
                 linkDisplay.style.display = 'none';
