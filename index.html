@@ -39,25 +39,23 @@
             </header>
 
             <section class="client-section">
-                <div class="section-title">CUSTOMER</div>
                 <div class="client-details-wrapper" style="display: flex; gap: 2rem; margin-top: 1rem;">
                     <div class="client-details" style="flex: 1;">
+                        <label style="display: block; font-weight: bold; color: navy; margin-bottom: 10px;">BILLED TO</label>
                         <div class="form-group">
-                            <input type="text" id="clientName" class="input-field" placeholder="[Name]">
+                            <input type="text" id="clientName" class="input-field" placeholder="Client Name / Company">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="clientCompany" class="input-field" placeholder="[Company Name]">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="clientAddress1" class="input-field" placeholder="[Street Address]">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="clientAddress2" class="input-field" placeholder="[City, ST ZIP]">
+                            <textarea id="clientAddress1" class="input-field" placeholder="Client Address" style="min-height: 80px;"></textarea>
                         </div>
                     </div>
                     <div class="client-contact" style="flex: 1;">
+                        <label style="display: block; font-weight: bold; color: navy; margin-bottom: 10px;">CONTACT INFO</label>
                         <div class="form-group">
-                            <input type="text" id="clientPhone" class="input-field" placeholder="[Phone]">
+                            <input type="text" id="clientEmail" class="input-field" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="clientPhone" class="input-field" placeholder="Phone Number">
                         </div>
                     </div>
                 </div>
