@@ -371,7 +371,7 @@ input[list]::-webkit-calendar-picker-indicator {
 
 .grand-total span {
     font-size: 1.3rem !important;
-    color: #fff;
+    color: navy;
     font-weight: bold !important;
 }
 
