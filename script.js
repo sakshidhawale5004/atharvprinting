@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tr.innerHTML = `
             <td>
                 <input type="text" class="item-input desc-input" list="productList" placeholder="Item description...">
+                <input type="url" class="item-input link-input" placeholder="Product URL (Optional)" style="margin-top: 4px; font-size: 0.85em; padding: 6px;">
+                <a href="#" class="item-link-display" target="_blank" style="display: none; margin-top: 4px; font-size: 0.85em; color: var(--primary-color); text-decoration: none;"><i class="ri-link"></i> View Product</a>
             </td>
             <td>
                 <input type="number" class="item-input qty-input" value="1" min="1">
@@ -70,14 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Attach events to new row
         const descInput = tr.querySelector('.desc-input');
+        const linkInput = tr.querySelector('.link-input');
+        const linkDisplay = tr.querySelector('.item-link-display');
         const qtyInput = tr.querySelector('.qty-input');
         const priceInput = tr.querySelector('.price-input');
         const deleteBtn = tr.querySelector('.delete-btn');
+
+        function updateLinkDisplay() {
+            if(linkInput.value.trim() !== '') {
+                linkDisplay.href = linkInput.value.trim();
+                linkDisplay.innerHTML = `<i class="ri-link"></i> ${linkInput.value.trim().replace(/^https?:\\/\\//, '')}`;
+                linkDisplay.style.display = 'inline-block';
+            } else {
+                linkDisplay.style.display = 'none';
+            }
+        }
+
+        linkInput.addEventListener('input', updateLinkDisplay);
 
         descInput.addEventListener('change', (e) => {
             const selected = atharvProducts.find(p => p.name === e.target.value);
             if(selected) {
                 priceInput.value = selected.price.toFixed(2);
+                
+                // Auto-generate link slug
+                const slug = selected.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                linkInput.value = 'https://atharventerprises.co/product/' + slug + '/';
+                updateLinkDisplay();
+                
                 updateRowTotal(tr);
             }
         });

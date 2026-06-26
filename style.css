@@ -463,6 +463,10 @@ input[list]::-webkit-calendar-picker-indicator {
         padding: 0;
     }
     
+    .link-input {
+        display: none !important;
+    }
+    
     .items-table-wrapper {
         border: none;
     }
