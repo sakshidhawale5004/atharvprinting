@@ -73,11 +73,10 @@ body {
 }
 
 .company-info h1 {
-    display: none;
     font-size: 2.2rem;
     color: var(--primary);
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     letter-spacing: -0.5px;
 }
 
