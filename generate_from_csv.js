@@ -19,10 +19,17 @@ data.forEach(row => {
     }
 
     if (id && name && price !== undefined) {
+        let image = row['Images'] || '';
+        // Some products might have multiple images separated by commas, get the first one
+        if (image && typeof image === 'string' && image.includes(',')) {
+            image = image.split(',')[0].trim();
+        }
+        
         products.push({
             id: id,
             name: name,
-            price: parseFloat(price) || 0
+            price: parseFloat(price) || 0,
+            image: image
         });
     }
 });
