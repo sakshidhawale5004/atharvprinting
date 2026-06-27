@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const itemsBody = document.getElementById('itemsBody');
-    const addRowBtn = document.getElementById('addRowBtn');
     const printBtn = document.getElementById('printBtn');
     const resetBtn = document.getElementById('resetBtn');
 
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addRow();
 
     // Event Listeners
-    addRowBtn.addEventListener('click', addRow);
     
     printBtn.addEventListener('click', () => {
         window.print();
