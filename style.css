@@ -201,6 +201,7 @@ textarea.input-field {
     margin-bottom: 2rem;
     border: 2px solid var(--primary);
     background: #fff;
+    min-height: 400px;
 }
 
 .items-table {
