@@ -50,14 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${enq.date}</td>
-                <td style="font-weight: bold;">${enq.name}</td>
-                <td>${enq.phone}</td>
-                <td>${enq.email}</td>
-                <td style="color: navy; font-weight: bold;">${enq.amount}</td>
                 <td>
-                    <button class="btn btn-secondary delete-btn" data-id="${enq.id}" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--danger); color: var(--danger);">
-                        Delete
+                    <span style="display: block; font-weight: 500;">${enq.date.split(',')[0]}</span>
+                    <span style="font-size: 0.85rem; color: #64748b;">${enq.date.split(',')[1] || ''}</span>
+                </td>
+                <td>
+                    <span style="font-weight: 600; color: #0f172a;">${enq.name}</span>
+                </td>
+                <td>
+                    <span style="display: block; margin-bottom: 4px;"><i class="ri-phone-line" style="color: #64748b; margin-right: 5px;"></i>${enq.phone}</span>
+                    <span style="font-size: 0.85rem;"><i class="ri-mail-line" style="color: #64748b; margin-right: 5px;"></i>${enq.email}</span>
+                </td>
+                <td><span class="amount-highlight">${enq.amount}</span></td>
+                <td style="text-align: right;">
+                    <button class="btn-danger delete-btn" data-id="${enq.id}">
+                        <i class="ri-delete-bin-line" style="pointer-events: none;"></i> Delete
                     </button>
                 </td>
             `;
