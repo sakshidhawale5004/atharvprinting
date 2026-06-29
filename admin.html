@@ -273,16 +273,28 @@
 </head>
 <body>
     <!-- Login Screen -->
-    <div id="loginScreen" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;">
-        <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; box-sizing: border-box;">
-            <img src="Atharv_Enterprises_Logo.webp" alt="Logo" style="height: 80px; margin-bottom: 1.5rem; border-radius: 12px; max-width: 100%;">
-            <h2 style="margin: 0 0 2rem 0; color: #0f172a; font-size: 1.8rem; font-weight: 700;">Admin Login</h2>
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Username" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s;" required>
-                <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s;" required>
-                <button type="submit" class="btn-premium btn-download" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.1rem; border: none; font-family: inherit;">Login</button>
-                <p id="loginError" style="color: #ef4444; margin-top: 1rem; display: none; font-size: 0.95rem; font-weight: 500;">Invalid username or password</p>
-            </form>
+    <div id="loginScreen" style="display: flex; min-height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; background: #fff;">
+        <!-- Left Banner (Image) -->
+        <div style="flex: 1; background: url('https://images.unsplash.com/photo-1629853965578-18e3881dfd78?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80') center/cover no-repeat; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 4rem;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4));"></div>
+            <div style="position: relative; z-index: 1; color: white; max-width: 600px;">
+                <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2;">Premium Print Solutions</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9; line-height: 1.6; color: #cbd5e1;">Manage all your printing enquiries, track orders, and grow your business with Atharv Enterprises.</p>
+            </div>
+        </div>
+        
+        <!-- Right Login Panel -->
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #f8fafc; max-width: 650px;">
+            <div style="background: white; padding: 4rem; border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; box-sizing: border-box;">
+                <img src="Atharv_Enterprises_Logo.webp" alt="Logo" style="height: 90px; margin-bottom: 2rem; border-radius: 12px; max-width: 100%;">
+                <h2 style="margin: 0 0 2.5rem 0; color: #0f172a; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;">Admin Login</h2>
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Username" style="width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'" required>
+                    <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 1.2rem; margin-bottom: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'" required>
+                    <button type="submit" class="btn-premium btn-download" style="width: 100%; justify-content: center; padding: 1.2rem; font-size: 1.1rem; border: none; font-family: inherit; font-weight: 700; letter-spacing: 0.5px; border-radius: 12px;">Sign In</button>
+                    <p id="loginError" style="color: #ef4444; margin-top: 1.5rem; display: none; font-size: 0.95rem; font-weight: 600;">Invalid username or password</p>
+                </form>
+            </div>
         </div>
     </div>
 
