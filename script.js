@@ -75,7 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </td>
             <td>
-                <input type="number" class="item-input qty-input" value="1" min="1">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
+                    <button class="btn-icon qty-minus" style="width: 24px; height: 24px; padding: 0; display: flex; align-items: center; justify-content: center;">-</button>
+                    <input type="number" class="item-input qty-input" value="1" min="1" style="width: 50px; text-align: center; padding: 4px;">
+                    <button class="btn-icon qty-plus" style="width: 24px; height: 24px; padding: 0; display: flex; align-items: center; justify-content: center;">+</button>
+                </div>
             </td>
             <td>
                 <input type="number" class="item-input price-input" value="0.00" min="0" step="0.01">
@@ -94,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const linkDisplay = tr.querySelector('.item-link-display');
         const itemImage = tr.querySelector('.item-image');
         const qtyInput = tr.querySelector('.qty-input');
+        const qtyMinus = tr.querySelector('.qty-minus');
+        const qtyPlus = tr.querySelector('.qty-plus');
         const priceInput = tr.querySelector('.price-input');
         const deleteBtn = tr.querySelector('.delete-btn');
 
@@ -195,6 +201,21 @@ document.addEventListener('DOMContentLoaded', () => {
         descInput.addEventListener('focus', updateAutocomplete);
 
         qtyInput.addEventListener('input', () => updateRowTotal(tr));
+        
+        qtyMinus.addEventListener('click', () => {
+            let val = parseInt(qtyInput.value) || 1;
+            if(val > 1) {
+                qtyInput.value = val - 1;
+                updateRowTotal(tr);
+            }
+        });
+        
+        qtyPlus.addEventListener('click', () => {
+            let val = parseInt(qtyInput.value) || 0;
+            qtyInput.value = val + 1;
+            updateRowTotal(tr);
+        });
+
         priceInput.addEventListener('input', () => updateRowTotal(tr));
 
         deleteBtn.addEventListener('click', () => {
@@ -239,5 +260,94 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('discountAmount').textContent = '-₹' + discountAmount.toFixed(2);
         document.getElementById('taxAmount').textContent = '₹' + taxAmount.toFixed(2);
         document.getElementById('grandTotal').textContent = '₹' + grandTotal.toFixed(2);
+    }
+    
+    // Add Row Button
+    const addRowBtn = document.getElementById('addRowBtn');
+    if (addRowBtn) {
+        addRowBtn.addEventListener('click', () => {
+            addRow();
+        });
+    }
+
+    // Populate Sidebar
+    const sidebarProductList = document.getElementById('sidebarProductList');
+    const sidebarSearch = document.getElementById('sidebarSearch');
+    const productCount = document.getElementById('productCount');
+
+    function renderSidebarProducts(products) {
+        if (!sidebarProductList) return;
+        sidebarProductList.innerHTML = '';
+        if (productCount) {
+            productCount.textContent = products.length;
+        }
+        
+        products.forEach(p => {
+            const div = document.createElement('div');
+            div.style.cssText = 'display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; transition: background 0.2s;';
+            
+            // Allow clicking the product in sidebar to add it to the table
+            div.onclick = () => {
+                // Find an empty row or create a new one
+                let emptyRow = null;
+                const rows = itemsBody.querySelectorAll('tr');
+                for (let row of rows) {
+                    if (!row.querySelector('.desc-input').value) {
+                        emptyRow = row;
+                        break;
+                    }
+                }
+                if (!emptyRow) {
+                    addRow();
+                    emptyRow = itemsBody.lastElementChild;
+                }
+                const descInput = emptyRow.querySelector('.desc-input');
+                const priceInput = emptyRow.querySelector('.price-input');
+                const itemImage = emptyRow.querySelector('.item-image');
+                const linkInput = emptyRow.querySelector('.link-input');
+                
+                descInput.value = p.name;
+                priceInput.value = p.price.toFixed(2);
+                if (p.image && itemImage) {
+                    itemImage.src = p.image;
+                    itemImage.style.display = 'block';
+                }
+                const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                if(linkInput) {
+                    linkInput.value = 'https://atharventerprises.co/product/' + slug + '/';
+                }
+                
+                // Trigger events to update displays
+                descInput.dispatchEvent(new Event('input'));
+                if (linkInput) linkInput.dispatchEvent(new Event('input'));
+                updateRowTotal(emptyRow);
+                
+                if (emptyRow === itemsBody.lastElementChild) {
+                    addRow();
+                }
+            };
+            
+            div.innerHTML = `
+                <img src="${p.image || 'https://via.placeholder.com/40'}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                <div style="flex-grow: 1;">
+                    <div style="font-weight: 500; font-size: 0.9rem; line-height: 1.2;">${p.name}</div>
+                    <div style="color: var(--primary); font-weight: bold; font-size: 0.85rem; margin-top: 4px;">₹${p.price.toFixed(2)}</div>
+                </div>
+                <button class="btn-icon" style="width: 24px; height: 24px; background: var(--primary); color: white;"><i class="ri-add-line"></i></button>
+            `;
+            sidebarProductList.appendChild(div);
+        });
+    }
+
+    if (typeof atharvProducts !== 'undefined') {
+        renderSidebarProducts(atharvProducts);
+        
+        if (sidebarSearch) {
+            sidebarSearch.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const filtered = atharvProducts.filter(p => p.name.toLowerCase().includes(term));
+                renderSidebarProducts(filtered);
+            });
+        }
     }
 });

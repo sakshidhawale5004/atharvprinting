@@ -9,8 +9,8 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="quote-card">
+    <div class="container" style="display: flex; gap: 2rem; max-width: 1400px; padding: 0 1rem;">
+        <div class="quote-card" style="flex: 1; max-width: 900px; margin: 0;">
             
             <header class="quote-header">
                 <div class="company-info">
@@ -63,7 +63,7 @@
                 </div>
             </section>
 
-            <div class="items-table-wrapper">
+            <div class="items-table-wrapper" style="margin-bottom: 1rem;">
                 <table class="items-table">
                     <thead>
                         <tr>
@@ -79,6 +79,10 @@
                     </tbody>
                 </table>
             </div>
+            
+            <button class="add-btn" id="addRowBtn" style="margin-top: 0; margin-bottom: 2rem;">
+                <i class="ri-add-line"></i> Add Item
+            </button>
 
 
             <section class="summary-section">
@@ -131,6 +135,20 @@ Print Name:</textarea>
             </div>
 
         </div>
+        
+        <div class="sidebar hide-on-print" style="width: 350px; min-width: 300px; background: #fff; border: 3px solid navy; padding: 1.5rem; height: fit-content; position: sticky; top: 2rem;">
+            <h3 style="color: navy; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Products List</span>
+                <span style="font-size: 0.9rem; background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px;" id="productCount">237</span>
+            </h3>
+            <div class="sidebar-search" style="margin-bottom: 1rem;">
+                <input type="text" id="sidebarSearch" placeholder="Search products..." style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; outline: none; font-family: 'Outfit', sans-serif;">
+            </div>
+            <div id="sidebarProductList" style="max-height: 70vh; overflow-y: auto; padding-right: 5px;">
+                <!-- Products will be injected here -->
+            </div>
+        </div>
+        
     </div>
 
     <script src="products.js"></script>
