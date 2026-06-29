@@ -350,4 +350,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+    
+    // Enquire Now Button Logic
+    const enquireBtn = document.getElementById('enquireBtn');
+    if (enquireBtn) {
+        enquireBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const clientName = document.getElementById('clientName').value || 'Unknown Client';
+            const clientPhone = document.getElementById('clientPhone').value || 'N/A';
+            const clientEmail = document.getElementById('clientEmail').value || 'N/A';
+            const grandTotal = document.getElementById('grandTotal').textContent;
+            
+            const enquiry = {
+                id: Date.now(),
+                date: new Date().toLocaleString(),
+                name: clientName,
+                phone: clientPhone,
+                email: clientEmail,
+                amount: grandTotal
+            };
+            
+            let enquiries = JSON.parse(localStorage.getItem('atharv_enquiries')) || [];
+            enquiries.push(enquiry);
+            localStorage.setItem('atharv_enquiries', JSON.stringify(enquiries));
+            
+            // Redirect to WhatsApp
+            let waText = `Hello, I have an enquiry from ${clientName}. Total Amount: ${grandTotal}.`;
+            window.open(`https://wa.me/919819976369?text=${encodeURIComponent(waText)}`, '_blank');
+        });
+    }
 });

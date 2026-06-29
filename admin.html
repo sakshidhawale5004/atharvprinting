@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Enquiries</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid navy;
+            padding-bottom: 1rem;
+        }
+        .dashboard-header h1 {
+            color: navy;
+            font-size: 2.5rem;
+        }
+        .stats-cards {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+        }
+        .stat-card h3 {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        .enquiries-table-wrapper {
+            overflow-x: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .enquiries-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .enquiries-table th {
+            background: #f8fafc;
+            color: navy;
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        .enquiries-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .btn-download {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+        .btn-download:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body style="background: var(--bg);">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <div style="display: flex; gap: 10px;">
+                <a href="index.html" class="btn btn-secondary" style="text-decoration: none;">Back to Invoice</a>
+                <button id="downloadCsvBtn" class="btn-download">
+                    Download CSV
+                </button>
+                <button id="clearDataBtn" class="btn btn-secondary" style="color: var(--danger); border-color: var(--danger);">
+                    Clear Data
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3>Total Enquiries</h3>
+                <div class="value" id="totalEnquiries">0</div>
+            </div>
+            <div class="stat-card" style="background: navy;">
+                <h3>Recent Enquiries (Last 7 days)</h3>
+                <div class="value" id="recentEnquiries">0</div>
+            </div>
+        </div>
+
+        <h2 style="color: navy; margin-bottom: 1rem;">Enquiry List</h2>
+        
+        <div class="enquiries-table-wrapper">
+            <table class="enquiries-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Client Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Total Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="enquiriesBody">
+                    <!-- Rows injected by JS -->
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state" style="display: none;">
+                No enquiries found yet.
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; background: #fff3cd; color: #856404; padding: 1rem; border: 1px solid #ffeeba; border-radius: 4px;">
+            <strong>Note:</strong> This dashboard is currently using browser LocalStorage for demonstration purposes. It only shows enquiries made from this specific browser. For production use across all devices, a backend database like Firebase must be configured.
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
