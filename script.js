@@ -371,26 +371,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 amount: grandTotal
             };
             
-            // Send to PHP Backend
-            fetch('api/save.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(enquiry)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Enquiry saved:', data);
-            })
-            .catch((error) => {
+            // Save to localStorage for Vercel deployment (since PHP is not supported)
+            try {
+                let enquiries = JSON.parse(localStorage.getItem('enquiries')) || [];
+                enquiries.push(enquiry);
+                localStorage.setItem('enquiries', JSON.stringify(enquiries));
+                console.log('Enquiry saved to localStorage');
+            } catch (error) {
                 console.error('Error saving enquiry:', error);
-            })
-            .finally(() => {
-                // Redirect to WhatsApp regardless of backend success
-                let waText = `Hello, I have an enquiry from ${clientName}. Total Amount: ${grandTotal}.`;
-                window.open(`https://wa.me/919819976369?text=${encodeURIComponent(waText)}`, '_blank');
-            });
+            }
+            
+            // Redirect to WhatsApp
+            let waText = `Hello, I have an enquiry from ${clientName}. Total Amount: ${grandTotal}.`;
+            window.open(`https://wa.me/919819976369?text=${encodeURIComponent(waText)}`, '_blank');
         });
     }
 });

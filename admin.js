@@ -31,11 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     async function loadEnquiries() {
         try {
-            const response = await fetch('api/get.php');
-            const data = await response.json();
+            const data = JSON.parse(localStorage.getItem('enquiries')) || [];
             return Array.isArray(data) ? data : [];
         } catch (error) {
-            console.error("Error fetching enquiries:", error);
+            console.error("Error loading enquiries:", error);
             return [];
         }
     }
@@ -107,11 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(confirm("Are you sure you want to delete this enquiry?")) {
                     const idToDelete = parseInt(e.target.getAttribute('data-id'));
                     try {
-                        await fetch('api/delete.php', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ id: idToDelete })
-                        });
+                        let enquiries = JSON.parse(localStorage.getItem('enquiries')) || [];
+                        enquiries = enquiries.filter(enq => enq.id !== idToDelete);
+                        localStorage.setItem('enquiries', JSON.stringify(enquiries));
                         renderDashboard();
                     } catch (error) {
                         console.error('Error deleting:', error);
@@ -169,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearBtn.addEventListener('click', async () => {
             if(confirm("WARNING: This will delete ALL enquiries permanently! Are you sure?")) {
                 try {
-                    await fetch('api/clear.php', { method: 'POST' });
+                    localStorage.removeItem('enquiries');
                     renderDashboard();
                 } catch (error) {
                     console.error('Error clearing data:', error);
