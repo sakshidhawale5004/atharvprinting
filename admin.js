@@ -1,26 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    function loadEnquiries() {
-        const enquiriesRaw = localStorage.getItem('atharv_enquiries');
-        let enquiries = [];
-        
-        if (enquiriesRaw) {
-            try {
-                enquiries = JSON.parse(enquiriesRaw);
-            } catch(e) {
-                console.error("Error parsing enquiries data", e);
-            }
+    async function loadEnquiries() {
+        try {
+            const response = await fetch('api/get.php');
+            const data = await response.json();
+            return Array.isArray(data) ? data : [];
+        } catch (error) {
+            console.error("Error fetching enquiries:", error);
+            return [];
         }
-        
-        return enquiries;
     }
 
-    function renderDashboard() {
-        const enquiries = loadEnquiries();
+    async function renderDashboard() {
         const tbody = document.getElementById('enquiriesBody');
         const emptyState = document.getElementById('emptyState');
         const totalEnquiries = document.getElementById('totalEnquiries');
         const recentEnquiries = document.getElementById('recentEnquiries');
+        
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading...</td></tr>';
+        
+        const enquiries = await loadEnquiries();
         
         totalEnquiries.textContent = enquiries.length;
         
@@ -75,19 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Add delete event listeners
         document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', async (e) => {
                 if(confirm("Are you sure you want to delete this enquiry?")) {
                     const idToDelete = parseInt(e.target.getAttribute('data-id'));
-                    const filtered = enquiries.filter(enq => enq.id !== idToDelete);
-                    localStorage.setItem('atharv_enquiries', JSON.stringify(filtered));
-                    renderDashboard();
+                    try {
+                        await fetch('api/delete.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: idToDelete })
+                        });
+                        renderDashboard();
+                    } catch (error) {
+                        console.error('Error deleting:', error);
+                    }
                 }
             });
         });
     }
 
-    function downloadCSV() {
-        const enquiries = loadEnquiries();
+    async function downloadCSV() {
+        const enquiries = await loadEnquiries();
         
         if (enquiries.length === 0) {
             alert("No data to download!");
@@ -131,10 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const clearBtn = document.getElementById('clearDataBtn');
     if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
+        clearBtn.addEventListener('click', async () => {
             if(confirm("WARNING: This will delete ALL enquiries permanently! Are you sure?")) {
-                localStorage.removeItem('atharv_enquiries');
-                renderDashboard();
+                try {
+                    await fetch('api/clear.php', { method: 'POST' });
+                    renderDashboard();
+                } catch (error) {
+                    console.error('Error clearing data:', error);
+                }
             }
         });
     }

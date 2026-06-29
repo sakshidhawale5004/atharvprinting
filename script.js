@@ -371,13 +371,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 amount: grandTotal
             };
             
-            let enquiries = JSON.parse(localStorage.getItem('atharv_enquiries')) || [];
-            enquiries.push(enquiry);
-            localStorage.setItem('atharv_enquiries', JSON.stringify(enquiries));
-            
-            // Redirect to WhatsApp
-            let waText = `Hello, I have an enquiry from ${clientName}. Total Amount: ${grandTotal}.`;
-            window.open(`https://wa.me/919819976369?text=${encodeURIComponent(waText)}`, '_blank');
+            // Send to PHP Backend
+            fetch('api/save.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(enquiry)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Enquiry saved:', data);
+            })
+            .catch((error) => {
+                console.error('Error saving enquiry:', error);
+            })
+            .finally(() => {
+                // Redirect to WhatsApp regardless of backend success
+                let waText = `Hello, I have an enquiry from ${clientName}. Total Amount: ${grandTotal}.`;
+                window.open(`https://wa.me/919819976369?text=${encodeURIComponent(waText)}`, '_blank');
+            });
         });
     }
 });
