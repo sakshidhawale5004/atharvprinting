@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div style="display: flex; align-items: flex-start; gap: 10px;">
                     <img class="item-image" src="" alt="Product Image" style="width: 50px; height: 50px; object-fit: cover; display: none; border-radius: 4px; border: 1px solid #ddd; margin-top: 5px;">
                     <div style="flex-grow: 1; position: relative;">
-                        <input type="text" class="item-input desc-input" autocomplete="off" placeholder="Item description...">
+                        <input type="text" class="item-input desc-input" autocomplete="off" placeholder="Add your items">
                         <div class="autocomplete-list" style="display: none;"></div>
-                        <input type="url" class="item-input link-input" placeholder="Product URL (Optional)" style="margin-top: 4px; font-size: 0.85em; padding: 6px;">
+                        <input type="hidden" class="item-input link-input">
                         <a href="#" class="item-link-display" target="_blank" style="display: none; margin-top: 4px; font-size: 0.85em; color: var(--primary-color); text-decoration: none;"><i class="ri-link"></i> View Product</a>
                     </div>
                 </div>
