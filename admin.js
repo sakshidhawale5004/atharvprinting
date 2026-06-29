@@ -1,5 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // Login Logic
+    const loginForm = document.getElementById('loginForm');
+    const loginScreen = document.getElementById('loginScreen');
+    const mainDashboard = document.getElementById('mainDashboard');
+    const loginError = document.getElementById('loginError');
+
+    // Check if already logged in (using sessionStorage)
+    if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
+        if(loginScreen) loginScreen.style.display = 'none';
+        if(mainDashboard) mainDashboard.style.display = 'block';
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            // Default admin credentials
+            if (user === 'admin' && pass === 'admin123') {
+                sessionStorage.setItem('isAdminLoggedIn', 'true');
+                loginScreen.style.display = 'none';
+                mainDashboard.style.display = 'block';
+                loginError.style.display = 'none';
+            } else {
+                loginError.style.display = 'block';
+            }
+        });
+    }
     async function loadEnquiries() {
         try {
             const response = await fetch('api/get.php');

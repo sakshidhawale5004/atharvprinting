@@ -272,10 +272,27 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
+    <!-- Login Screen -->
+    <div id="loginScreen" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;">
+        <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; box-sizing: border-box;">
+            <img src="Atharv_Enterprises_Logo.webp" alt="Logo" style="height: 80px; margin-bottom: 1.5rem; border-radius: 12px; max-width: 100%;">
+            <h2 style="margin: 0 0 2rem 0; color: #0f172a; font-size: 1.8rem; font-weight: 700;">Admin Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s;" required>
+                <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: border-color 0.2s;" required>
+                <button type="submit" class="btn-premium btn-download" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.1rem; border: none; font-family: inherit;">Login</button>
+                <p id="loginError" style="color: #ef4444; margin-top: 1rem; display: none; font-size: 0.95rem; font-weight: 500;">Invalid username or password</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="mainDashboard" class="dashboard-container" style="display: none;">
         
         <header class="dashboard-header">
-            <h1><i class="ri-dashboard-3-line"></i> Admin Workspace</h1>
+            <h1>
+                <img src="Atharv_Enterprises_Logo.webp" alt="Logo" style="height: 45px; margin-right: 15px; border-radius: 8px;">
+                <i class="ri-dashboard-3-line"></i> Admin Workspace
+            </h1>
             <div style="display: flex; gap: 15px;">
                 <a href="index.html" class="btn-premium btn-outline">
                     <i class="ri-arrow-left-line"></i> Back to Generator
