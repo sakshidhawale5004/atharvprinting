@@ -37,8 +37,32 @@ body {
 }
 
 .container {
-    max-w: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+.main-layout {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    padding: 0 1rem;
+}
+
+.main-quote-card {
+    flex: 1;
+    max-width: 900px;
+    margin: 0;
+}
+
+.sidebar-layout {
+    width: 350px;
+    min-width: 300px;
+    background: #fff;
+    border: 3px solid navy;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
 }
 
 /* Glassmorphism Card */
@@ -449,6 +473,23 @@ input[list]::-webkit-calendar-picker-indicator {
 @media screen and (max-width: 768px) {
     body {
         padding: 0.5rem;
+    }
+
+    .main-layout {
+        flex-direction: column;
+        padding: 0;
+        gap: 1rem;
+    }
+
+    .main-quote-card {
+        max-width: 100%;
+    }
+
+    .sidebar-layout {
+        width: 100%;
+        min-width: 100%;
+        position: static;
+        margin-top: 1rem;
     }
 
     .quote-card {
