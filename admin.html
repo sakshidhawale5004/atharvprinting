@@ -269,30 +269,198 @@
             font-weight: 700;
             font-size: 1.1rem;
         }
+
+        /* Login Screen */
+        .login-wrapper {
+            display: flex; 
+            min-height: 100vh; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 9999; 
+            background: #fff;
+        }
+        .login-banner {
+            flex: 1; 
+            background: url('https://atharventerprises.co/wp-content/uploads/2026/04/digital-tablet-with-various-stationery-scaled.jpg') center/cover no-repeat; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 4rem;
+        }
+        .login-banner-overlay {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
+        }
+        .login-banner-content {
+            position: relative; 
+            z-index: 1; 
+            color: white; 
+            max-width: 650px;
+        }
+        .login-banner-content h1 {
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.2;
+        }
+        .login-banner-content p {
+            font-size: 1.1rem; 
+            opacity: 0.9; 
+            line-height: 1.7; 
+            color: #e2e8f0; 
+            margin-bottom: 1rem;
+        }
+        .login-panel {
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #f8fafc; 
+            max-width: 650px;
+        }
+        .login-box {
+            background: white; 
+            padding: 4rem; 
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); 
+            width: 100%; 
+            max-width: 450px; 
+            text-align: center; 
+            box-sizing: border-box;
+        }
+        .login-box img {
+            height: 90px; 
+            margin-bottom: 2rem; 
+            border-radius: 12px; 
+            max-width: 100%;
+        }
+        .login-box h2 {
+            margin: 0 0 2.5rem 0; 
+            color: #0f172a; 
+            font-size: 2rem; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+        }
+        .login-box input {
+            width: 100%; 
+            padding: 1.2rem; 
+            margin-bottom: 1.2rem; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 12px; 
+            font-family: inherit; 
+            font-size: 1rem; 
+            box-sizing: border-box; 
+            outline: none; 
+            transition: all 0.3s;
+        }
+        .login-box input:focus {
+            border-color: #10b981;
+        }
+        .login-box .btn-download {
+            width: 100%; 
+            justify-content: center; 
+            padding: 1.2rem; 
+            font-size: 1.1rem; 
+            border: none; 
+            font-family: inherit; 
+            font-weight: 700; 
+            letter-spacing: 0.5px; 
+            border-radius: 12px;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                text-align: center;
+            }
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+                justify-content: center;
+            }
+            .dashboard-header .btn-premium {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+            }
+            .dashboard-header > div {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            .table-section {
+                padding: 1.5rem 1rem;
+            }
+            .table-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            .table-header h2 {
+                font-size: 1.2rem;
+            }
+            .enquiries-table th, .enquiries-table td {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+            
+            /* Login Screen Mobile */
+            .login-wrapper {
+                flex-direction: column;
+            }
+            .login-banner {
+                display: none; /* Hide banner on mobile for cleaner look */
+            }
+            .login-panel {
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+            .login-box {
+                padding: 2.5rem 1.5rem;
+            }
+            .login-box h2 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Login Screen -->
-    <div id="loginScreen" style="display: flex; min-height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; background: #fff;">
+    <div id="loginScreen" class="login-wrapper">
         <!-- Left Banner (Image) -->
-        <div style="flex: 1; background: url('https://atharventerprises.co/wp-content/uploads/2026/04/digital-tablet-with-various-stationery-scaled.jpg') center/cover no-repeat; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 4rem;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));"></div>
-            <div style="position: relative; z-index: 1; color: white; max-width: 650px;">
-                <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2;">Trusted Printing & Stationery Partner in Mumbai</h1>
-                <p style="font-size: 1.1rem; opacity: 0.9; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">Atharva Enterprises is a well-established printing and stationery service provider based in Byculla (West), Mumbai. We cater to corporates, offices, schools, institutions, retailers, and wholesalers, offering a wide range of printing services and office supplies at competitive prices.</p>
-                <p style="font-size: 1.1rem; opacity: 0.9; line-height: 1.7; color: #e2e8f0;">With a strong focus on quality, consistency, and timely delivery, we have become a reliable vendor for businesses that require bulk stationery, printing jobs, registers, files, and office essentials &mdash; all from a single source.</p>
+        <div class="login-banner">
+            <div class="login-banner-overlay"></div>
+            <div class="login-banner-content">
+                <h1>Trusted Printing & Stationery Partner in Mumbai</h1>
+                <p>Atharva Enterprises is a well-established printing and stationery service provider based in Byculla (West), Mumbai. We cater to corporates, offices, schools, institutions, retailers, and wholesalers, offering a wide range of printing services and office supplies at competitive prices.</p>
+                <p>With a strong focus on quality, consistency, and timely delivery, we have become a reliable vendor for businesses that require bulk stationery, printing jobs, registers, files, and office essentials &mdash; all from a single source.</p>
             </div>
         </div>
         
         <!-- Right Login Panel -->
-        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #f8fafc; max-width: 650px;">
-            <div style="background: white; padding: 4rem; border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; box-sizing: border-box;">
-                <img src="Atharv_Enterprises_Logo.webp" alt="Logo" style="height: 90px; margin-bottom: 2rem; border-radius: 12px; max-width: 100%;">
-                <h2 style="margin: 0 0 2.5rem 0; color: #0f172a; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;">Admin Login</h2>
+        <div class="login-panel">
+            <div class="login-box">
+                <img src="Atharv_Enterprises_Logo.webp" alt="Logo">
+                <h2>Admin Login</h2>
                 <form id="loginForm">
-                    <input type="text" id="username" placeholder="Username" style="width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'" required>
-                    <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 1.2rem; margin-bottom: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; box-sizing: border-box; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'" required>
-                    <button type="submit" class="btn-premium btn-download" style="width: 100%; justify-content: center; padding: 1.2rem; font-size: 1.1rem; border: none; font-family: inherit; font-weight: 700; letter-spacing: 0.5px; border-radius: 12px;">Sign In</button>
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit" class="btn-premium btn-download">Sign In</button>
                     <p id="loginError" style="color: #ef4444; margin-top: 1.5rem; display: none; font-size: 0.95rem; font-weight: 600;">Invalid username or password</p>
                 </form>
             </div>
